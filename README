@@ -1,11 +1,4 @@
-
-
-
-
-
-
-This is a tutorial of buffer based stack overflow attacks. Credit to 'Smashing The Stack For Fun And Profit by Aleph One' for a detailed description of how to do this
-And Manuel Egele megele@bu.edu for creating the challenge and being a great professor (specifically providing prog5.c and the template for how to create exploit.py)
+This is a tutorial of buffer based stack overflow attacks. Credit to 'Smashing The Stack For Fun And Profit by Aleph One' for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge and being a great professor (specifically providing prog5.c and the template for how to create exploit.py)
 
 
 # ---------- prog5.c source ------------------ #

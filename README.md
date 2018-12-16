@@ -6,7 +6,7 @@ for a detailed description of how to do this and Manuel Egele megele@bu.edu for 
 Author: Chase Clarke cfclarke@bu.edu
 
 
-# ---------- prog5.c source ------------------ #
+# prog5.c source
 
 //compile with $ gcc prog5.c -o prog5
 

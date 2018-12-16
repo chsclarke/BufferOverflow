@@ -59,7 +59,7 @@ int main(int argc, char **argv)
   
 ```
 
-# ---------- prog5 stack ------------------ #
+# Prog5 Stack
 
 
 Stack after 'processInput' is called but before stack pointer returns to main:

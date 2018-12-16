@@ -2,6 +2,8 @@ This is a tutorial of Stack Buffer Overflow attacks. Credit to 'Smashing The Sta
 for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge 
 (specifically providing prog5.c and the template for how to create exploit.py).
 
+Author: Chase Clarke cfclarke@bu.edu
+
 
 # ---------- prog5.c source ------------------ #
 

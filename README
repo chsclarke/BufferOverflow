@@ -1,5 +1,6 @@
 This is a tutorial of Stack Buffer Overflow attacks. Credit to 'Smashing The Stack For Fun And Profit by Aleph One' 
-for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge (specifically providing prog5.c and the template for how to create exploit.py).
+for a detailed description of how to do this and Manuel Egele megele@bu.edu for creating the challenge 
+(specifically providing prog5.c and the template for how to create exploit.py).
 
 
 # ---------- prog5.c source ------------------ #

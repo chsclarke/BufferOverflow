@@ -147,33 +147,33 @@ Running gdb without the worry of environment variables:
 
 
 Helpful notes for using gdb:
-	to run or rerun your program:
-		(gdb) r "input_here"
+   to run or rerun your program:
+      (gdb) r "input_here"
 
-	Set breakpoint:
-		(gdb) b *main+offset - example: b *main+78
+   Set breakpoint:
+      (gdb) b *main+offset - example: b *main+78
 
-	delete breakpoint:
-		(gdb) delete [breakpoints] [range...]
-
-
-	print first 500 addresses stored on stack:
-		(gdb) x/500xw $esp
+   delete breakpoint:
+      (gdb) delete [breakpoints] [range...]
 
 
-	(gdb) info frame         - gives where your instruction pointer is at
-	(gdb) info registers     - gives the values contained in all of your registers
+   print first 500 addresses stored on stack:
+      (gdb) x/500xw $esp
+      
+   extra info:
+      (gdb) info frame         - gives where your instruction pointer is at .  
+      (gdb) info registers     - gives the values contained in all of your registers
 
 
 Now that you have the program running correctly in gdb, you need to:
 	
-	Use the above notes to set a breakpoint the instruction before instructionProcess returns.
+   Use the above notes to set a breakpoint the instruction before instructionProcess returns.
 	
-	Look at the stack at that time.
+   Look at the stack at that time.
 	
-	Find an address that points directly back into your nops (no operation instruction in x86 assembly).
+   Find an address that points directly back into your nops (no operation instruction in x86 assembly).
 
-	Save that address and use it as your new return address to replace the stored eip pointer.
+   Save that address and use it as your new return address to replace the stored eip pointer.
 
 
 Taking into account all the above, you will need 524 bytes total. 520 for buffer and stored pointers, 4 for overwriting 
@@ -206,7 +206,7 @@ To remedy this you can create a python file (exploit.py) shown below that requir
 	The return address you found with gdb.
 
 
-// ---------- exploit.py source ------------------ //
+# exploit.py Source
 ```
 #run with prog5 $(python exploit.py)
 

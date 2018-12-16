@@ -64,10 +64,10 @@ int main(int argc, char **argv)
 
 Stack after 'processInput' is called but before stack pointer returns to main:
 
-
+```
 Towards BOTTOM of stack - TOP of memory
 
-```
+
 	.           .     
 	.           .     
 	.           .     
@@ -99,11 +99,10 @@ Towards BOTTOM of stack - TOP of memory
 	.           .     
 	.           .     
 	.           .     
-```
 
 
 Towards TOP of stack - BOTTOM of memory
-
+```
 
 
 

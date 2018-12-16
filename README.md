@@ -8,15 +8,14 @@ Author: Chase Clarke cfclarke@bu.edu
 
 # ---------- prog5.c source ------------------ #
 
-// compile with $ gcc prog5.c -o prog5
+//compile with $ gcc prog5.c -o prog5
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-/*
- *  check the string passed from the command-line and print message accordingly. Vulnerable program
- */
+//check the string passed from the command-line and print message accordingly. Vulnerable program
+
 
 int processInput(char *input)
 {		
@@ -41,21 +40,20 @@ int processInput(char *input)
 		return 0;
 }
 
-/*
- *   program accepts two parameters, there is a simple buffer overflow...
- */
+//program accepts two parameters, there is a simple buffer overflow...
+
 
 
 int main(int argc, char **argv)
 {
-		/* check arguments */
+		//check arguments
 		if (argc<2)
 		{
 				fprintf(stdout,"Synopsis: vuln1 <magic word>\n\n");
 				exit(1);
 		}
 
-		/* process the input */
+		//process the input
 		processInput(argv[1]);
 
 		return 0;

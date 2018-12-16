@@ -41,9 +41,7 @@ int processInput(char *input)
 }
 
 //program accepts two parameters, there is a simple buffer overflow...
-```
 
-```
 int main(int argc, char **argv)
 {
 		//check arguments

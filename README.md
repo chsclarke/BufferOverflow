@@ -148,22 +148,28 @@ Running gdb without the worry of environment variables:
 
 Helpful notes for using gdb:
 * to run or rerun your program:
+```
 	(gdb) r "input_here"
-
+```
 * Set breakpoint:
+```
 	(gdb) b *main+offset - example: b *main+78
-
+```
 * delete breakpoint:
+```
 	(gdb) delete [breakpoints] [range...]
-
+```
 
 * print first 500 addresses stored on stack:
+```
 	(gdb) x/500xw $esp
-      
+```
+	
 * extra info:
+```
 	(gdb) info frame         - gives where your instruction pointer is at .  
 	(gdb) info registers     - gives the values contained in all of your registers
-
+```
 
 Now that you have the program running correctly in gdb, you need to:
 	
@@ -201,9 +207,9 @@ you can launch your new shell by running the prog5 executable with the above pyt
 The process of manually creating these python scripts can be tedious. 
 To remedy this you can create a python file (exploit.py) shown below that requires:
 
-1. The length in bytes from the start of the buffer to the start of the return address.
+* The length in bytes from the start of the buffer to the start of the return address.
 
-2. The return address you found with gdb.
+* The return address you found with gdb.
 
 
 # exploit.py Source
